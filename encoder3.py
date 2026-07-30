@@ -1,5 +1,5 @@
 from picamera2.encoders import H264Encoder
-from picamera2.outputs import FileOutput
+from picamera2.outputs import FfmpegOutput
 
 import os
 import threading
@@ -19,7 +19,9 @@ class Encoder:
         self.bitrate = bitrate
 
         self.encoder = None
-        self.output = None
+        self.output = FfmpegOutput(
+            "-"
+        )
 
         self.running = False
         self.thread = None
