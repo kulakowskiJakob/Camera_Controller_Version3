@@ -27,7 +27,7 @@ class Camera:
                 "format": "YUV420"
             },
             controls={
-                "FrameRate": self.framrate
+                "FrameRate": self.framerate
             }
         )
 
