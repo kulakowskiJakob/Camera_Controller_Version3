@@ -24,7 +24,7 @@ class Camera:
 
             main={
                 "size": (self.width, self.height),
-                "format": "RGB888"
+                "format": "YUV420"
             },
             controls={
                 "FrameRate": self.framrate
