@@ -23,6 +23,13 @@ def main():
         bitrate=config.VIDEO_BITRATE
     )
 
+    uploader = Uploader()
+
+    streamer = Streamer(
+        host=config.STREAM_HOST,
+        port=config.STREAM_PORT,
+        stream_directory=config.HLS_DIRECTORY
+
     controller = Controller(
         camera=camera,
         encoder=encoder,
@@ -30,10 +37,6 @@ def main():
         uploader=uploader
     )
 
-    streamer = Streamer(
-        host=config.STREAM_HOST,
-        port=config.STREAM_PORT,
-        stream_directory=config.HLS_DIRECTORY
 
     def shutdown(signum, frame):
         controller.stop()
