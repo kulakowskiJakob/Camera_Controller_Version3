@@ -3,7 +3,7 @@ import threading
 import subprocess
 import time
 
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, send_file
 
 class Streamer:
 
@@ -31,37 +31,9 @@ class Streamer:
         @self.app.route("/")
         def index():
 
-            return """
-            <!DOCTYPE html>
-            <html>
-            
-            <head>
-                <title>Raspberry Pi Camera</title>
-            </head>
-            
-            <body>
-            
-            <h1>
-            Raspberry Pi H.264 Camera Stream
-            </h1>
-            
-            <video
-                width="1280"
-                height="720"
-                controls
-                autoplay
-                muted>
-                
-                <source
-                src="/stream.m3u8"
-                type="application/x-mpegURL">
-                
-            </video>
-            
-            </body>
-            
-            </html>
-            """
+            return send_file(
+                "index.html"
+             )
 
         @self.app.route("/stream.m3u8")
         def playlist():
