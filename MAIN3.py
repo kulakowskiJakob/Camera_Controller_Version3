@@ -1,6 +1,7 @@
 import signal
 import sys
 import time
+import config
 
 from camera import Camera
 from encoder import Encoder
@@ -11,15 +12,15 @@ from uploader import Uploader
 def main():
 
     camera = Camera(
-        width=1280,
-        height = 720,
-        framerate=30,
+        width=config.CAMERA_WIDTH
+        height=config.CAMERA_HEIGHT
+        framerate=config.CAMERA_FRAMERATE
     )
 
     encoder = Encoder(
         camera=camera,
-        output_directory="hls",
-        bitrate=4000000
+        output_directory=config.HLS_DIRECTORY,
+        bitrate=config.VIDEO_BITRATE
     )
 
     controller = Controller(
@@ -28,6 +29,11 @@ def main():
         streamer=streamer,
         uploader=uploader
     )
+
+    streamer = Streamer(
+        host=config.STREAM_HOST,
+        port=config.STREAM_PORT,
+        stream_directory=config.HLS_DIRECTORY
 
     def shutdown(signum, frame):
         controller.stop()
